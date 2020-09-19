@@ -5,6 +5,7 @@
  */
 package pdfimagem;
 
+import com.jfoenix.controls.JFXDecorator;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,9 +22,16 @@ public class PDFImagem extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
         
-        Scene scene = new Scene(root);
-        
+     
+        JFXDecorator decorator = new JFXDecorator(stage, root, false, false, true);;
+        decorator.setCustomMaximize(false);
+     
+        Scene scene = new Scene(decorator);
+        scene.getStylesheets().add(getClass().getResource("Theme.css").toExternalForm());
         stage.setScene(scene);
+        stage.setTitle("PDFImagem"); 
+     
+     
         stage.show();
     }
 

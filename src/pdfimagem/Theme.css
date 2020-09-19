@@ -1,0 +1,19 @@
+.jfx-decorator {
+    -fx-decorator-color: #0097A7;    
+}
+
+.jfx-decorator .jfx-decorator-buttons-container {
+    -fx-background-color: -fx-decorator-color;
+}
+
+.jfx-decorator .resize-border {
+    -fx-border-color: -fx-decorator-color;
+    -fx-border-width: 0 4 4 4;
+}
+
+#drop_file{
+    -fx-background-color: #008a99;
+    -fx-background-radius: 10;
+
+
+}
