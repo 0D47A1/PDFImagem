@@ -17,3 +17,12 @@
 
 
 }
+#drop_file_drag{
+    -fx-background-color: #008a99;
+    -fx-background-radius: 10;
+     -fx-border-color:  #4DB6AC ;
+    -fx-border-width: 5 ; 
+    -fx-border-style: segments(10, 15, 15, 15)  line-cap round ;
+
+
+}
