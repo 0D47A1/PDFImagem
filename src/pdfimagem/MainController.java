@@ -21,6 +21,7 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javax.sound.midi.Patch;
 
 /**
  *
@@ -43,13 +44,13 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        
-        btn_select_pdf.setOnAction(event ->{
+        btn_select_pdf.setOnAction(event -> {
             FileChooser fileChooser = new FileChooser();
-            fileChooser.showOpenDialog((Stage) btn_select_pdf.getScene().getWindow());
-        
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
+            File pdf = fileChooser.showOpenDialog((Stage) btn_select_pdf.getScene().getWindow());
+
         });
-        drop_file.setOnDragOver( event -> {
+        drop_file.setOnDragOver(event -> {
             if (event.getDragboard().hasFiles()) {
                 drop_file_drag.setVisible(true);
             }
@@ -60,8 +61,8 @@ public class MainController implements Initializable {
 
         });
 
-        drop_file_drag.setOnDragExited( event -> {
-            System.out.println(pdf_drag.size());
+        drop_file_drag.setOnDragExited(event -> {
+
             if (pdf_drag.size() == 0) {
                 drop_file_drag.setVisible(false);
             }
@@ -70,7 +71,14 @@ public class MainController implements Initializable {
 
         drop_file_drag.setOnDragDropped(event -> {
             if (pdf_drag.size() == 0) {
-                pdf_drag.addAll(event.getDragboard().getFiles());
+                event.getDragboard().getFiles().forEach(file -> {
+
+                    String tipo = file.getName().substring(file.getName().lastIndexOf(".") + 1);
+                    if (tipo.equals("pdf")) {                      
+                        pdf_drag.add(file);
+                    }
+                });
+
             }
 
         });
