@@ -2,6 +2,8 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -23,6 +25,29 @@
          </children>
       </Pane>
       <Pane fx:id="drop_file_drag" layoutX="42.0" layoutY="45.0" prefHeight="200.0" prefWidth="200.0" styleClass="drop_file_drag" visible="false" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0" />
+      <Pane fx:id="pane_status" layoutX="20.0" layoutY="50.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #008a99;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
+         <children>
+            <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="14.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/pdf.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="174.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/jpg.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="108.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/Reload.gif" />
+               </image>
+            </ImageView>
+            <Label layoutX="56.0" layoutY="138.0" text="Convertendo..." textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+            </Label>
+         </children></Pane>
       <Label layoutX="19.0" layoutY="14.0" text="Converter PDF para imagem JPEG" textFill="#dadada">
          <font>
             <Font name="Arial Bold" size="16.0" />
@@ -33,6 +58,5 @@
             <Font size="11.0" />
          </font>
       </Label>
-      <Pane fx:id="drop_file_drag1" layoutX="20.0" layoutY="50.0" prefHeight="200.0" prefWidth="200.0" styleClass="drop_file_drag" visible="false" />
    </children>
 </AnchorPane>
