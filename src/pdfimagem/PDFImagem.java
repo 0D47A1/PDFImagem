@@ -36,7 +36,7 @@ public class PDFImagem extends Application {
         scene.getStylesheets().add(getClass().getResource("Theme.css").toExternalForm());
         stage.setScene(scene);
         stage.getIcons().add(new Image("/img/PDFImagem_icon.png"));
-        stage.setTitle("PDFImagem"); 
+        stage.setTitle("PDFImagem 1.0"); 
      
      
         stage.show();

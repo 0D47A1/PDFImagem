@@ -6,7 +6,11 @@
 package pdfimagem;
 
 import com.jfoenix.controls.JFXButton;
+import java.awt.Desktop;
 import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseDragEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
@@ -41,8 +46,12 @@ public class MainController implements Initializable {
     @FXML
     public Pane pane_status;
     
+    @FXML
+    private Label link_autor;
+    
     public static MainController controller;
     public List<File> pdf_drag = new ArrayList<>();
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -101,6 +110,16 @@ public class MainController implements Initializable {
 
         });
 
+    }
+
+    @FXML
+    private void go_autor(MouseEvent event) throws MalformedURLException, URISyntaxException, IOException {
+        
+        URL url = new URL("https://github.com/Melksedeklobo/PDFImagem");
+        
+        Desktop desktop = Desktop.getDesktop();
+        desktop.browse(url.toURI());
+        
     }
 
 }

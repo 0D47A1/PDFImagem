@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -53,10 +54,13 @@
             <Font name="Arial Bold" size="16.0" />
          </font>
       </Label>
-      <Label accessibleRole="HYPERLINK" layoutX="44.0" layoutY="248.0" text="Desenvolvidor por Melquizedeque Lobo" textFill="#dadada" AnchorPane.bottomAnchor="2.0">
+      <Label fx:id="link_autor" accessibleRole="HYPERLINK" layoutX="44.0" layoutY="248.0" onMouseClicked="#go_autor" style="-fx-underline: true;" text="Desenvolvidor por Melquizedeque Lobo" textFill="#dadada" AnchorPane.bottomAnchor="2.0">
          <font>
             <Font size="11.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Label>
    </children>
 </AnchorPane>
