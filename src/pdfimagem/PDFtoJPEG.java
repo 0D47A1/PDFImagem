@@ -5,6 +5,7 @@
  */
 package pdfimagem;
 
+import java.awt.Desktop;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -17,46 +18,60 @@ import org.apache.pdfbox.pdmodel.PDPageTree;
 import org.apache.pdfbox.rendering.ImageType;
 import org.apache.pdfbox.rendering.PDFRenderer;
 import org.apache.pdfbox.tools.imageio.ImageIOUtil;
+import static pdfimagem.MainController.controller;
 
 /**
  *
  * @author melqu
  */
 public class PDFtoJPEG {
+
     private Integer index = 0;
+
     public PDFtoJPEG(List<File> files) {
-      
-        files.forEach(file->{
-             File Diretorio = new File(file.getParent()+"\\"+file.getName().replace(".pdf", "")+" Convertido");
-             Diretorio.mkdir();
-             
-            try {
+        
+        new Thread() {
+            @Override
+            public void run() {
                 
-                PDDocument document = PDDocument.load(file); 
-                PDFRenderer PDFRenderer = new PDFRenderer(document);
-                        
-                PDPageTree PageList  = document.getDocumentCatalog().getPages();
-                
-                PageList.forEach((Page) ->{
+                files.forEach(file -> {
+                    File Diretorio = new File(file.getParent() + "\\" + file.getName().replace(".pdf", "") + " Convertido");
+                    Diretorio.mkdir();
+
                     try {
-                        BufferedImage pdf_image = PDFRenderer.renderImageWithDPI(0, 300, ImageType.RGB);
-                        ImageIOUtil.writeImage(pdf_image, Diretorio.getPath()+ "\\Pagina "+index+".jpg", 300);
-                         index++;
-                         
+
+                        PDDocument document = PDDocument.load(file);
+                        PDFRenderer PDFRenderer = new PDFRenderer(document);
+
+                        PDPageTree PageList = document.getDocumentCatalog().getPages();
+
+                        PageList.forEach((Page) -> {
+                            try {
+                                BufferedImage pdf_image = PDFRenderer.renderImageWithDPI(0, 300, ImageType.RGB);
+                                ImageIOUtil.writeImage(pdf_image, Diretorio.getPath() + "\\Pagina " + index + ".jpg", 300);
+                                index++;
+
+                            } catch (IOException ex) {
+                                Logger.getLogger(PDFtoJPEG.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+
+                        });
+
+                        Desktop desktop = Desktop.getDesktop();
+                        desktop.open(Diretorio);
+
+                        controller.pane_status.setVisible(false);
+                        controller.pdf_drag.clear();
+
                     } catch (IOException ex) {
                         Logger.getLogger(PDFtoJPEG.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    
-                   
+
+                    System.out.println(file.getParent() + "\\" + file.getName().replace(".pdf", ""));
                 });
-                        
-            
-            } catch (IOException ex) {
-                Logger.getLogger(PDFtoJPEG.class.getName()).log(Level.SEVERE, null, ex);
             }
-             
-            System.out.println(file.getParent()+"\\"+file.getName().replace(".pdf", ""));
-        });
+        }.start();
+       
     }
-    
+
 }

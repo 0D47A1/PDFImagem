@@ -35,14 +35,18 @@ public class MainController implements Initializable {
     @FXML
     private Pane drop_file_drag;
 
-    private List<File> pdf_drag = new ArrayList<>();
+    
     @FXML
     private JFXButton btn_select_pdf;
     @FXML
-    private Pane pane_status;
-
+    public Pane pane_status;
+    
+    public static MainController controller;
+    public List<File> pdf_drag = new ArrayList<>();
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        controller = this;
 
         btn_select_pdf.setOnAction(event -> {
             FileChooser fileChooser = new FileChooser();
@@ -86,8 +90,9 @@ public class MainController implements Initializable {
                 drop_file_drag.setVisible(false);
                 
                 if(pdf_drag.size() != 0){
-                    pane_status.setVisible(true);
+                     pane_status.setVisible(true);
                     new PDFtoJPEG(pdf_drag);
+                  
                 
                 }
                 
