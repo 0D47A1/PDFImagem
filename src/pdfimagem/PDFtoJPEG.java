@@ -29,11 +29,11 @@ public class PDFtoJPEG {
     private Integer index = 0;
 
     public PDFtoJPEG(List<File> files) {
-        
+
         new Thread() {
             @Override
             public void run() {
-                
+
                 files.forEach(file -> {
                     File Diretorio = new File(file.getParent() + "\\" + file.getName().replace(".pdf", "") + " Convertido");
                     Diretorio.mkdir();
@@ -60,18 +60,20 @@ public class PDFtoJPEG {
                         Desktop desktop = Desktop.getDesktop();
                         desktop.open(Diretorio);
 
-                        controller.pane_status.setVisible(false);
-                        controller.pdf_drag.clear();
-
                     } catch (IOException ex) {
                         Logger.getLogger(PDFtoJPEG.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
                     System.out.println(file.getParent() + "\\" + file.getName().replace(".pdf", ""));
                 });
+
+                controller.pane_status.setVisible(false);
+                controller.pdf_drag.clear();
+                
+                System.out.println(controller.pdf_drag.size());
             }
         }.start();
-       
+
     }
 
 }
