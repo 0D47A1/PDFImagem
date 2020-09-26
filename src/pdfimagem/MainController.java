@@ -15,6 +15,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -89,9 +90,8 @@ public class MainController implements Initializable {
         drop_file_drag.setOnDragDropped(event -> {
             if (pdf_drag.size() == 0) {
                 event.getDragboard().getFiles().forEach(file -> {
-
-                    String tipo = file.getName().substring(file.getName().lastIndexOf(".") + 1);
-                    if (tipo.equals("pdf")) {                      
+                 
+                    if (Pattern.compile("([^\\s]+(\\.(?i)(pdf))$)").matcher(file.getName()).matches()) {                      
                         pdf_drag.add(file);
                     }
                 });

@@ -56,7 +56,7 @@ public class PDFtoJPEG {
                             }
 
                         });
-
+                        document.close();
                         Desktop desktop = Desktop.getDesktop();
                         desktop.open(Diretorio);
 
