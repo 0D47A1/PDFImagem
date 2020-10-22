@@ -88,30 +88,31 @@ public class MainController implements Initializable {
         });
 
         drop_file_drag.setOnDragDropped(event -> {
-            if (pdf_drag.size() == 0) {
+
                 event.getDragboard().getFiles().forEach(file -> {
-                 
-                    if (Pattern.compile("([^\\s]+(\\.(?i)(pdf))$)").matcher(file.getName()).matches()) {                      
+              
+                    if ("pdf".equalsIgnoreCase(file.getName().substring(file.getName().length()-3))) {                      
                         pdf_drag.add(file);
+                     
                     }
                 });
                 
                 drop_file_drag.setVisible(false);
-                
-                if(pdf_drag.size() != 0){
-                     pane_status.setVisible(true);
-                    new PDFtoJPEG(pdf_drag);
+               
+                pane_status.setVisible(true);
+                new PDFtoJPEG(pdf_drag);
                   
-                
-                }
-                
+                  
 
-            }
+          
 
         });
 
     }
 
+    private void print(String text){
+        System.out.println(text);
+    }
     @FXML
     private void go_autor(MouseEvent event) throws MalformedURLException, URISyntaxException, IOException {
         

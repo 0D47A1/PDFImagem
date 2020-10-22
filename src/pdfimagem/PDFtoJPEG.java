@@ -47,7 +47,8 @@ public class PDFtoJPEG {
 
                         PageList.forEach((Page) -> {
                             try {
-                                BufferedImage pdf_image = PDFRenderer.renderImageWithDPI(0, 300, ImageType.RGB);
+                                
+                                BufferedImage pdf_image = PDFRenderer.renderImageWithDPI(index, 300, ImageType.RGB);
                                 ImageIOUtil.writeImage(pdf_image, Diretorio.getPath() + "\\Pagina " + index + ".jpg", 300);
                                 index++;
 
